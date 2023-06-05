@@ -7,6 +7,10 @@ function CartItem({item, setCart}) {
   const add = () => {
     item.quantity += 1;
     setQuantity(item.quantity);
+    // :(
+    setCart(prevCart => {
+      return [...prevCart];
+    });
   };
 
   const substract = () => {
@@ -15,12 +19,16 @@ function CartItem({item, setCart}) {
     };
     item.quantity -= 1;
     setQuantity(item.quantity);
+    // :(
+    setCart(prevCart => {
+      return [...prevCart];
+    });
   };
 
   const remove = () => {
     setCart(prevCart => {
-      return (prevCart.filter((cartItem) => {
-        return (cartItem.id !== item.id);
+      return (prevCart.filter((prevItem) => {
+        return (prevItem.id !== item.id);
       }));
     });
   };
@@ -30,10 +38,10 @@ function CartItem({item, setCart}) {
   },[item.quantity])
 
   return (
-    <li>
+    <li className='cart-item'>
       <img src={item.image} alt='product'/>
       <p>{item.title}</p>
-      <p>{item.price}</p>
+      <p>${item.price}</p>
       <div>
         <button onClick={add}>plus 1</button>
         <div>Quantity: {quantity}</div>

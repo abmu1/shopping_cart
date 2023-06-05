@@ -62,7 +62,7 @@ function Catalog({setCart}) {
           <option value="women's clothing">Women's Clothing</option>
         </select>
       </label>
-      <div>
+      <div className='products-view'>
         {products.filter((product) => {
           return (product.category === category || (category === 'All'));;
         }).map(product => {
@@ -70,7 +70,7 @@ function Catalog({setCart}) {
             <div key={uniqid()}>
               <img src={product.image} alt='product'/>
               <p>{product.title}</p>
-              <p>{product.price}</p>
+              <p>${product.price}</p>
               <button onClick={addToCart} id={product.id}>Add to cart</button>
             </div>
           )
