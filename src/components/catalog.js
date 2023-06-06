@@ -15,23 +15,19 @@ function Catalog({setCart}) {
       return (product.id === id);
     })[0];
 
-    setCart(prevCart => {
-      let item = null;
-      const newCart = prevCart.filter(prevItem => {
+    setCart((prevCart) => {
+      let neww = true;
+      const newCart = [];
+      prevCart.forEach(prevItem => {
         if (prevItem.id === id) {
-          item = {...prevItem};
-          return false;
+          prevItem.quantity += 1;
+          neww = false;
         }
-        return true;
+        newCart.push(prevItem);
       });
-
-      if (item) {
-        item.quantity += 1;
+      if (neww) {
+        newCart.push({...product, quantity: 1})
       }
-      else{
-        item = {...product, quantity: 1};
-      }
-      newCart.push(item);
       return newCart;
     });
   };
