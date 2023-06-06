@@ -22,6 +22,14 @@ function App() {
       sum += item.quantity;
     });
     return sum
+  };
+
+  const showCart = () => {
+    document.getElementById('cart').style.display = 'block';
+  };
+
+  const hideCart = () => {
+    document.getElementById('cart').style.display = 'none';
   }
 
   return (
@@ -32,19 +40,22 @@ function App() {
           <NavLink to='/'>Home</NavLink>
           <NavLink to='catalog'>Catalog</NavLink>
         </nav>
-        <div>
-          <h2>Cart</h2>
-          <ul className='cart-view'>
-            {cart.map(item => {
-              return <CartItem item={item} setCart={setCart} key={item.id}/>;
-            })}
-          </ul>
-          <br/>
-          <span>Total Price: ${cartTotal()}</span>
-          <br/>
-          <span>Number Of Items: {cartLength()}</span>
-        </div>
+        <button onClick={showCart}>Show Cart</button>
       </header>
+
+      <div id='cart' style={{display:'none'}}>
+        <h2>Cart</h2>
+        <button onClick={hideCart}>Hide Cart</button>
+        <ul className='cart-view'>
+          {cart.map(item => {
+            return <CartItem item={item} setCart={setCart} key={item.id}/>;
+          })}
+        </ul>
+        <br/>
+        <span>Total Price: ${cartTotal()}</span>
+        <br/>
+        <span>Number Of Items: {cartLength()}</span>
+      </div>
 
       <Routes>
         <Route path='/' element={<Home/>} />

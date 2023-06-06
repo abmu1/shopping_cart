@@ -19,11 +19,12 @@ function Catalog({setCart}) {
       let neww = true;
       const newCart = [];
       prevCart.forEach(prevItem => {
-        if (prevItem.id === id) {
-          prevItem.quantity += 1;
+        let item = {...prevItem};
+        if (item.id === id) {
+          item.quantity += 1;
           neww = false;
         }
-        newCart.push(prevItem);
+        newCart.push(item);
       });
       if (neww) {
         newCart.push({...product, quantity: 1})
