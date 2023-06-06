@@ -40,7 +40,9 @@ function App() {
           <NavLink to='/'>Home</NavLink>
           <NavLink to='catalog'>Catalog</NavLink>
         </nav>
-        <button onClick={showCart}>Show Cart</button>
+        <div>
+          <button onClick={showCart}>Show Cart</button>
+        </div>
       </header>
 
       <div id='cart' style={{display:'none'}}>

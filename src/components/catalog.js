@@ -47,7 +47,7 @@ function Catalog({setCart}) {
   },[]);
 
   return (
-    <div>
+    <div className='catalog'>
       <h2>Browse Catalog</h2>
       <label>
         Choose Category
@@ -64,7 +64,7 @@ function Catalog({setCart}) {
           return (product.category === category || (category === 'All'));;
         }).map(product => {
           return (
-            <div key={uniqid()}>
+            <div key={uniqid()} className='product-card'>
               <img src={product.image} alt='product'/>
               <p>{product.title}</p>
               <p>${product.price}</p>
