@@ -33,22 +33,28 @@ function CartItem({item, setCart}) {
     });
   };
 
+  const toggle = (e) => {
+    e.currentTarget.classList.toggle('getting-clicked');
+  };
+
   useEffect(() => {
     setQuantity(item.quantity);
   },[item.quantity])
 
   return (
-    <li className='cart-item'>
-      <img src={item.image} alt='product'/>
-      <p>{item.title}</p>
-      <p>${item.price}</p>
-      <div>
-        <button onClick={add}>plus 1</button>
-        <div>Quantity: {quantity}</div>
-        <button onClick={substract}>minus 1</button>
+    <div className='cart-item'>
+      <img src={item.image} alt='product' className='item-image'/>
+      <div className='item-info'>
+        <p>{item.title}</p>
+        <p>${item.price}</p>
+        <div className='item-quantity'>
+          <img src='./svgs/minus.svg' alt='minus' onClick={substract} onMouseDown={toggle} onMouseUp={toggle}/>
+          <span>{quantity}</span>
+          <img src='./svgs/plus.svg' alt='plus' onClick={add} onMouseDown={toggle} onMouseUp={toggle}/>
+        </div>
       </div>
-      <button onClick={remove}>Remove</button>
-  </li>
+      <img src='./svgs/trash.svg' alt='trash' onClick={remove} className='remove-item' onMouseDown={toggle} onMouseUp={toggle}/>
+  </div>
   )
 };
 
